@@ -7,6 +7,7 @@ import com.epam.ria.page.page.GoogleResultsPage;
 import com.epam.ria.page.page.RiaMainPage;
 import com.epam.ria.page.page.SkodaResultsPage;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -19,10 +20,10 @@ public class TestSuite {
     driver = ChromeConfig.config();
   }
 
-//  @AfterClass
-//  public void cleanup() {
-//    driver.close();
-//  }
+  @AfterClass
+  public void cleanup() {
+    driver.close();
+  }
 
   @Test
   public void startSearchGoogle(){
