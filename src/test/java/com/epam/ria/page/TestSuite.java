@@ -22,10 +22,11 @@ public class TestSuite {
 
   @AfterClass
   public void cleanup() {
+    System.out.println("Clean up");
     driver.close();
   }
 
-  @Test
+  @Test(description = "Search on google page")
   public void startSearchGoogle(){
     driver.manage().window().maximize();
     driver.get("http://www.google.com");
