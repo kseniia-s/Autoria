@@ -7,8 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners ({org.uncommons.reportng.HTMLReporter.class,
+    org.uncommons.reportng.JUnitXMLReporter.class})
 public class TestSuite {
 
   private WebDriver driver;
@@ -17,13 +20,13 @@ public class TestSuite {
   public void setup() {
     driver = ChromeConfig.config();
   }
+  @AfterClass
+  public void cleanup() {
+    System.out.println("Clean up");
+    driver.close();
+  }
 
-//  @AfterClass
-//  public void cleanup() {
-//    driver.close();
-//  }
-
-  @Test //simple test of searching the car
+  @Test(description = "Search on google page")
   public void startSearchGoogle(){
     driver.manage().window().maximize();
     driver.get("http://www.google.com");
