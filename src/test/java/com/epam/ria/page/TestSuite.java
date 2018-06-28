@@ -9,8 +9,11 @@ import com.epam.ria.page.page.SkodaResultsPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners ({org.uncommons.reportng.HTMLReporter.class,
+    org.uncommons.reportng.JUnitXMLReporter.class})
 public class TestSuite {
 
   private WebDriver driver;
