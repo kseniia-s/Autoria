@@ -31,4 +31,8 @@ public abstract class APage {
       }
     }
   }
+
+  protected void enterText(String text, WebElement element){
+    element.sendKeys(text);
+  }
 }
