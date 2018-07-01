@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 public class AddAutoPage extends APage {
 
   @FindBy(id = "login_frame")
-  WebElement loginIframe;
+  private WebElement loginIframe;
 
   public AddAutoPage(WebDriver driver) {
     super(driver);

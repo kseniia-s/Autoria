@@ -29,6 +29,7 @@ public class Header extends APage {
   public WebElement getNewCarMenuItem() {
     return newCarMenuItem;
   }
+
   public WebElement getBuCarMenuItem() {
     return buCarMenuItem;
   }
