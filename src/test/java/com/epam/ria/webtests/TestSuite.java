@@ -1,19 +1,16 @@
-package com.epam.ria.page;
+package com.epam.ria.webtests;
 
 
-import com.epam.ria.page.config.ChromeConfig;
-import com.epam.ria.page.pages.*;
-import com.epam.ria.page.pages.googlepages.GoogleHomePage;
-import com.epam.ria.page.pages.googlepages.GoogleResultsPage;
+import com.epam.ria.webtests.config.ChromeConfig;
+import com.epam.ria.webtests.pages.*;
+import com.epam.ria.webtests.pages.googlepages.GoogleHomePage;
+import com.epam.ria.webtests.pages.googlepages.GoogleResultsPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
-import java.io.FileInputStream;
-import java.util.Properties;
 
 @Listeners ({org.uncommons.reportng.HTMLReporter.class,
     org.uncommons.reportng.JUnitXMLReporter.class})

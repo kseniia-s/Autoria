@@ -1,4 +1,4 @@
-package com.epam.ria.page.apitests;
+package com.epam.ria.apitests;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;

@@ -1,6 +1,6 @@
-package com.epam.ria.page.pages.elements;
+package com.epam.ria.webtests.pages.elements;
 
-import com.epam.ria.page.pages.APage;
+import com.epam.ria.webtests.pages.APage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

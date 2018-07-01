@@ -1,6 +1,6 @@
-package com.epam.ria.page.pages.googlepages;
+package com.epam.ria.webtests.pages.googlepages;
 
-import com.epam.ria.page.pages.APage;
+import com.epam.ria.webtests.pages.APage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;

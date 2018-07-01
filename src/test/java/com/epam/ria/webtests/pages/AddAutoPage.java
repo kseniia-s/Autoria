@@ -1,10 +1,10 @@
-package com.epam.ria.page.pages;
+package com.epam.ria.webtests.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class AddAutoPage extends APage{
+public class AddAutoPage extends APage {
 
   private WebElement loginIframe;
 

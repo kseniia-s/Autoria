@@ -1,4 +1,4 @@
-package com.epam.ria.page.config;
+package com.epam.ria.webtests.config;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
