@@ -5,6 +5,10 @@ import com.epam.ria.webtests.config.ChromeConfig;
 import com.epam.ria.webtests.pages.*;
 import com.epam.ria.webtests.pages.googlepages.GoogleHomePage;
 import com.epam.ria.webtests.pages.googlepages.GoogleResultsPage;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -16,13 +20,17 @@ import org.testng.annotations.Test;
     org.uncommons.reportng.JUnitXMLReporter.class})
 public class TestSuite {
 
+  private final static Logger LOG = LogManager.getLogger(TestSuite.class);
+
   private WebDriver driver;
   private String baseUrl;
 
   @BeforeClass
   public void setup() {
+    LOG.trace("Setup test classes;");
     driver = ChromeConfig.config();
     baseUrl = ChromeConfig.properties.getProperty("baseUrl");
+    LOG.trace("Setup finished");
   }
 
   protected RiaMainPage openRiaMainPage(){
@@ -41,11 +49,17 @@ public class TestSuite {
   public void searchGoogleTest(){
     driver.manage().window().maximize();
     driver.get("http://www.google.com");
+
+    LOG.debug("opened google page");
     GoogleHomePage page = new GoogleHomePage(driver);
     page.fillSearchRequest("autoria");
+
+    LOG.warn("opened google result page");
     GoogleResultsPage googleResult = new GoogleResultsPage(driver);
     googleResult.isTextPresent("https://auto.ria.com");
     googleResult.firstLinkResults();
+
+    LOG.error("opened first link");
   }
 
   @Test(description = "Search a new car Skoda")
