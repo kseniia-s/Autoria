@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 public class GoogleHomePage extends APage {
 
     @FindBy(name = "q")
-    WebElement searchField;
+    private WebElement searchField;
 
     public GoogleHomePage(WebDriver driver) {
         super(driver);

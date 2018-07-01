@@ -3,7 +3,6 @@ package com.epam.ria.webtests.pages;
 import com.epam.ria.webtests.pages.elements.Header;
 import com.epam.ria.webtests.pages.elements.SearchForm;
 import org.openqa.selenium.*;
-
 import java.util.List;
 
 public class RiaMainPage extends APage {
@@ -26,19 +25,19 @@ public class RiaMainPage extends APage {
     selectDropDownOptionByText("categories", name);
     return this;
   }
-  public RiaMainPage chooseBrand (String brand) {
+  public RiaMainPage chooseBrand(String brand) {
     selectDropDownOptionByText("marks", brand);
     return this;
   }
-  public RiaMainPage chooseModel (String model) {
+  public RiaMainPage chooseModel(String model) {
     selectDropDownOptionByText("models", model);
     return this;
   }
-  public RiaMainPage chooseCity (String city) {
+  public RiaMainPage chooseCity(String city) {
     selectDropDownOptionByText("regionCenters", city);
     return this;
   }
-  public SearchCarResultPage clickSearchCar () {
+  public SearchCarResultPage clickSearchCar() {
     driver.findElement(By.xpath("//*[@id='mainSearchForm']/div[3]/button")).click();
     return new SearchCarResultPage(driver);
   }

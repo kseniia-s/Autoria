@@ -12,9 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class APage {
   private static final Logger LOG = LogManager.getLogger(APage.class);
-
   protected WebDriver driver;
-
   public APage(WebDriver driver) {
     this.driver = driver;
   }

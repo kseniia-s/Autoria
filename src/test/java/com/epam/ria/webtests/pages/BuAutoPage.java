@@ -10,8 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 public class BuAutoPage extends APage implements BreadcrumbPage {
 
     @FindBy(css = "div.breadcrumbs div:last-child")
-    WebElement breadcrumb;
-
+    private WebElement breadcrumb;
     private SearchForm searchForm;
 
     public BuAutoPage(WebDriver driver) {

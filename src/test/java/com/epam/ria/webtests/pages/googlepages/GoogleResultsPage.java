@@ -12,7 +12,7 @@ import java.util.List;
 public class GoogleResultsPage extends APage {
 
   @FindBy(xpath = "//h3[@class='r']/a")
-  WebElement searchResultLink;
+  private WebElement searchResultLink;
 
   public GoogleResultsPage(WebDriver driver) {
     super(driver);

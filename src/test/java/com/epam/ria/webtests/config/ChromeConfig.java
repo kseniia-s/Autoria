@@ -35,7 +35,7 @@ public class ChromeConfig {
 
     int pageWaitTimeout = Integer.parseInt(properties.getProperty("pageWaitTimeoutSeconds", "5"));
     driver.manage().timeouts().pageLoadTimeout(pageWaitTimeout, TimeUnit.SECONDS);
-    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     return driver;
   }
