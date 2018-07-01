@@ -1,23 +1,25 @@
 package com.epam.ria.webtests.pages.elements;
 
 import com.epam.ria.webtests.pages.APage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class Header extends APage {
-  private WebElement loginLink;
-  private WebElement newCarMenuItem;
-  private WebElement buCarMenuItem;
-  private WebElement sellCarButton;
 
-  public Header (WebDriver driver){ super(driver);}
+  @FindBy(xpath = "//a[@href='https://auto.ria.com/login.html']")
+  WebElement loginLink;
+  @FindBy(xpath = "//a[@data-type='new']")
+  WebElement newCarMenuItem;
+  @FindBy(xpath = "//a[@data-type='bu']")
+  WebElement buCarMenuItem;
+  @FindBy(xpath = "//a[contains (@href, '/add_auto.html') and contains (@class, 'button-add')]")
+  WebElement sellCarButton;
 
-  public void initElements(){
-    loginLink = driver.findElement(By.xpath("//a[@href='https://auto.ria.com/login.html']"));
-    newCarMenuItem = driver.findElement(By.xpath("//a[@data-type='new']"));
-    buCarMenuItem = driver.findElement(By.xpath("//a[@data-type='bu']"));
-    sellCarButton = driver.findElement(By.xpath("//a[contains (@href, '/add_auto.html') and contains (@class, 'button-add')]"));
+  public Header (WebDriver driver){
+    super(driver);
+    PageFactory.initElements(driver, this);
   }
 
   public WebElement getLoginLink(){

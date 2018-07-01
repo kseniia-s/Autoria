@@ -1,24 +1,23 @@
 package com.epam.ria.webtests.pages.elements;
 
 import com.epam.ria.webtests.pages.APage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class SearchForm extends APage {
-  private WebElement buCarRadioBut;
-  private WebElement newCarRadioBut;
 
-  private WebElement newCarRadioButLabel;
+  @FindBy(id = "buRadioType")
+  WebElement buCarRadioBut;
+  @FindBy(id = "naRadioType")
+  WebElement newCarRadioBut;
+  @FindBy(xpath = "//label[@for='naRadioType']")
+  WebElement newCarRadioButLabel;
 
   public SearchForm (WebDriver driver) {
     super(driver);
-  }
-
-  public void initElements() {
-    buCarRadioBut = driver.findElement(By.id("buRadioType"));
-    newCarRadioBut = driver.findElement(By.id("naRadioType"));
-    newCarRadioButLabel = driver.findElement(By.xpath("//label[@for='naRadioType']"));
+    PageFactory.initElements(driver, this);
   }
 
   public WebElement getBuCarRadioBut() {
@@ -29,7 +28,7 @@ public class SearchForm extends APage {
     return newCarRadioBut;
   }
 
-  public void performNewCarRadioButClick() {
+  public void clickNewCarRadioButton() {
     newCarRadioButLabel.click();
   }
 }

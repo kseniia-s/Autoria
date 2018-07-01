@@ -10,10 +10,6 @@ public class LoginPage extends APage{
     super(driver);
   }
 
-  @Override
-  protected void initElements() {
-  }
-
   public void performLogin(String login, String password){
     driver.switchTo().frame("login_frame");
     //if we are in frame:
