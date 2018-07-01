@@ -12,19 +12,24 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.io.FileInputStream;
+import java.util.Properties;
+
 @Listeners ({org.uncommons.reportng.HTMLReporter.class,
     org.uncommons.reportng.JUnitXMLReporter.class})
 public class TestSuite {
 
   private WebDriver driver;
+  private String baseUrl;
 
   @BeforeClass
   public void setup() {
     driver = ChromeConfig.config();
+    baseUrl = ChromeConfig.properties.getProperty("baseUrl");
   }
 
   protected RiaMainPage openRiaMainPage(){
-    driver.get("https://auto.ria.com");
+    driver.get(baseUrl);
     driver.manage().window().maximize();
     return new RiaMainPage(driver);
   }
