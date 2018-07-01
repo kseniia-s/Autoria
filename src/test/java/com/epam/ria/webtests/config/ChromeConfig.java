@@ -1,5 +1,7 @@
 package com.epam.ria.webtests.config;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -10,6 +12,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class ChromeConfig {
+  private static final Logger LOG = LogManager.getLogger(ChromeConfig.class);
 
   public static Properties properties;
 
@@ -19,7 +22,7 @@ public class ChromeConfig {
     try {
       properties.load(new FileInputStream(path.getFile()));
     } catch (IOException e) {
-      e.printStackTrace();
+      LOG.error(e.getMessage(), e);
     }
   }
 
