@@ -1,4 +1,4 @@
-package com.epam.ria.page.page;
+package com.epam.ria.page.pages;
 
 import org.openqa.selenium.*;
 

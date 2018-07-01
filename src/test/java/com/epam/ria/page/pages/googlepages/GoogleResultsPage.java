@@ -1,5 +1,6 @@
-package com.epam.ria.page.page;
+package com.epam.ria.page.pages.googlepages;
 
+import com.epam.ria.page.pages.APage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,9 +19,9 @@ public class GoogleResultsPage extends APage {
   }
 
   protected void initElements() {
-    searchResultLink = webDriver.findElement(By.xpath("//h3[@class='r']/a"));
-    elemOnPage = webDriver.findElement(By.xpath("//*[@id=\'rso\']/div"));
-    nextPageElem = webDriver.findElement(By.xpath("//*[@id=\'pnnext\']/span[2]"));
+    searchResultLink = driver.findElement(By.xpath("//h3[@class='r']/a"));
+    elemOnPage = driver.findElement(By.xpath("//*[@id=\'rso\']/div"));
+    nextPageElem = driver.findElement(By.xpath("//*[@id=\'pnnext\']/span[2]"));
   }
 
   public void firstLinkResults(){
@@ -28,7 +29,7 @@ public class GoogleResultsPage extends APage {
   }
 
   public boolean isTextPresent(String text){
-    List<WebElement> elementsList = webDriver.findElements(By.xpath("//*[contains(text(), \""+text+"\")]"));
+    List<WebElement> elementsList = driver.findElements(By.xpath("//*[contains(text(), \""+text+"\")]"));
     return !elementsList.isEmpty();
   }
 }

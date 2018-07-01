@@ -1,5 +1,6 @@
-package com.epam.ria.page.page;
+package com.epam.ria.page.pages.googlepages;
 
+import com.epam.ria.page.pages.APage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +15,7 @@ public class GoogleHomePage extends APage {
     }
 
     protected void initElements() {
-        searchField = webDriver.findElement(By.name("q"));
+        searchField = driver.findElement(By.name("q"));
     }
 
     public void fillSearchRequest(String text) {
