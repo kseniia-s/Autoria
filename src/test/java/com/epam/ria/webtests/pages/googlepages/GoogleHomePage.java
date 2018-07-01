@@ -1,21 +1,20 @@
 package com.epam.ria.webtests.pages.googlepages;
 
 import com.epam.ria.webtests.pages.APage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class GoogleHomePage extends APage {
 
-    private WebElement searchField;
+    @FindBy(name = "q")
+    WebElement searchField;
 
     public GoogleHomePage(WebDriver driver) {
         super(driver);
-    }
-
-    protected void initElements() {
-        searchField = driver.findElement(By.name("q"));
+        PageFactory.initElements(driver, this);
     }
 
     public void fillSearchRequest(String text) {

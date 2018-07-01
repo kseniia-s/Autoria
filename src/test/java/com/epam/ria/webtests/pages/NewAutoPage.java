@@ -6,22 +6,21 @@ import com.epam.ria.webtests.pages.elements.SearchForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class NewAutoPage extends APage implements BreadcrumbPage {
 
-  private WebElement breadcrumb;
+  @FindBy(css = "div.breadcrumbs div:last-child")
+  WebElement breadcrumb;
   private SearchForm searchForm;
   private Header header;
-  public NewAutoPage (WebDriver driver) {
-    super(driver);
-  }
 
-  protected void initElements() {
-    breadcrumb = driver.findElement(By.cssSelector("div.breadcrumbs div:last-child"));
+  public NewAutoPage(WebDriver driver) {
+    super(driver);
+    PageFactory.initElements(driver, this);
     searchForm = new SearchForm(driver);
-    searchForm.initElements();
     header = new Header(driver);
-    header.initElements();
   }
 
   @Override
@@ -29,7 +28,10 @@ public class NewAutoPage extends APage implements BreadcrumbPage {
     return breadcrumb.getText().toLowerCase();
   }
 
-  public void navToBuCarPage(){ header.getBuCarMenuItem().click(); }
+  public BuAutoPage navToBuCarPage() {
+    header.getBuCarMenuItem().click();
+    return new BuAutoPage(driver);
+  }
 
   public SearchForm getSearchForm() {
     return searchForm;

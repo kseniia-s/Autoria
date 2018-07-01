@@ -4,27 +4,22 @@ import com.epam.ria.webtests.pages.APage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
 public class GoogleResultsPage extends APage {
 
-  private WebElement searchResultLink;
-  private WebElement elemOnPage;
-  private WebElement allText;
-  private WebElement nextPageElem;
+  @FindBy(xpath = "//h3[@class='r']/a")
+  WebElement searchResultLink;
 
   public GoogleResultsPage(WebDriver driver) {
     super(driver);
+    PageFactory.initElements(driver, this);
   }
 
-  protected void initElements() {
-    searchResultLink = driver.findElement(By.xpath("//h3[@class='r']/a"));
-    elemOnPage = driver.findElement(By.xpath("//*[@id=\'rso\']/div"));
-    nextPageElem = driver.findElement(By.xpath("//*[@id=\'pnnext\']/span[2]"));
-  }
-
-  public void firstLinkResults(){
+  public void clickFirstLinkResults(){
     searchResultLink.click();
   }
 
