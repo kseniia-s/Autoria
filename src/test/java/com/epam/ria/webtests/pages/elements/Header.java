@@ -9,13 +9,16 @@ import org.openqa.selenium.support.PageFactory;
 public class Header extends APage {
 
   @FindBy(xpath = "//a[@href='https://auto.ria.com/login.html']")
-  WebElement loginLink;
+  private WebElement loginLink;
+
   @FindBy(xpath = "//a[@data-type='new']")
-  WebElement newCarMenuItem;
+  private WebElement newCarMenuItem;
+
   @FindBy(xpath = "//a[@data-type='bu']")
-  WebElement buCarMenuItem;
+  private WebElement buCarMenuItem;
+
   @FindBy(xpath = "//a[contains (@href, '/add_auto.html') and contains (@class, 'button-add')]")
-  WebElement sellCarButton;
+  private WebElement sellCarButton;
 
   public Header (WebDriver driver){
     super(driver);

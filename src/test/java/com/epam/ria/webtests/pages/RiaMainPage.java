@@ -16,25 +16,31 @@ public class RiaMainPage extends APage {
     header = new Header(driver);
   }
 
+// set parameters for a car in the searching form
   public RiaMainPage clickNewCarRadioButton() {
-    searchForm.clickNewCarRadioButton();
-    return this;
-  }
-
+  searchForm.clickNewCarRadioButton();
+  return this;
+}
   public RiaMainPage chooseTransport(String name) {
-    selectDropDownOptionByText("categories", name);
+    selectDropDownOptionByTextId("categories", name);
     return this;
   }
   public RiaMainPage chooseBrand(String brand) {
-    selectDropDownOptionByText("marks", brand);
+    WebElement brandSearch = driver.findElement(By.id("brandTooltipBrandAutocompleteInput-brand"));
+    brandSearch.sendKeys(brand);
+    WebElement brandElement = driver.findElement(By.xpath("//div[@id='brandTooltipBrandAutocomplete-brand']//a[contains(text(),\""+brand+"\")]"));
+    brandElement.click();
     return this;
   }
   public RiaMainPage chooseModel(String model) {
-    selectDropDownOptionByText("models", model);
+    WebElement modelSearch = driver.findElement(By.id("brandTooltipBrandAutocompleteInput-model"));
+    modelSearch.sendKeys(model);
+    WebElement modelElement = driver.findElement(By.xpath("//div[@id='brandTooltipBrandAutocomplete-model']//a[text()=\""+model+"\"]"));
+    modelElement.click();
     return this;
   }
   public RiaMainPage chooseCity(String city) {
-    selectDropDownOptionByText("regionCenters", city);
+    selectDropDownOptionByTextId("regionCenters", city);
     return this;
   }
   public SearchCarResultPage clickSearchCar() {
@@ -42,22 +48,20 @@ public class RiaMainPage extends APage {
     return new SearchCarResultPage(driver);
   }
 
-// navigation to login page
+//login
   public void navigateToLoginPage(){
     header.getLoginLink().click();
   }
-
   public boolean checkLoggedState() {
     try {
       WebElement ownCabinetLink = driver.findElement(By.cssSelector("#header div.item.user-menu span"));
-      return ownCabinetLink.getText().toLowerCase().contains("Личный кабинет");
+      return ownCabinetLink.getText().contains("Личный кабинет");
     } catch (NoSuchElementException e) {
       System.out.println("Not Logged In");
     }
     return false;
   }
 
-// navigation to New car pages
   public NewAutoPage navToNewCarPage(){
     header.getNewCarMenuItem().click();
     return new NewAutoPage(driver);
@@ -67,7 +71,6 @@ public class RiaMainPage extends APage {
     List<WebElement> categoriesList = driver.findElements(By.cssSelector("#categories > option:nth-child(n)"));
     return categoriesList.size();
   }
-
   public void clickSellCarButton(){
     header.getSellCarButton().click();
   }

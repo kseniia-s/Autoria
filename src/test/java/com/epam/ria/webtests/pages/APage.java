@@ -13,11 +13,12 @@ import java.util.concurrent.TimeUnit;
 public abstract class APage {
   private static final Logger LOG = LogManager.getLogger(APage.class);
   protected WebDriver driver;
+
   public APage(WebDriver driver) {
     this.driver = driver;
   }
 
-  protected void selectDropDownOptionByText(String id, String text) {
+  protected void selectDropDownOptionByTextId(String id, String text) {
     Select select = new Select(driver.findElement(By.id(id)));
     selectOptionByText(select, text);
   }

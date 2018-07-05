@@ -14,7 +14,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-@Listeners ({org.uncommons.reportng.HTMLReporter.class,
+@Listeners({org.uncommons.reportng.HTMLReporter.class,
     org.uncommons.reportng.JUnitXMLReporter.class})
 public class TestSuite {
 
@@ -31,13 +31,13 @@ public class TestSuite {
     LOG.trace("Setup finished");
   }
 
-  protected RiaMainPage openRiaMainPage(){
+  protected RiaMainPage openRiaMainPage() {
     driver.manage().window().maximize();
     driver.get(baseUrl);
     return new RiaMainPage(driver);
   }
 
-  protected GoogleHomePage openGoogleHomePage(){
+  protected GoogleHomePage openGoogleHomePage() {
     driver.manage().window().maximize();
     driver.get("https://google.com.ua");
     return new GoogleHomePage(driver);
@@ -45,12 +45,11 @@ public class TestSuite {
 
   @AfterClass
   public void cleanup() {
-    System.out.println("Clean up");
-    driver.close();
+    driver.quit();
   }
 
   @Test(description = "Search on google pages")
-  public void searchGoogleTest(){
+  public void searchGoogleTest() {
     GoogleHomePage googleHomePage = openGoogleHomePage();
     LOG.debug("opened google page");
     googleHomePage.fillSearchRequest("autoria");
@@ -61,22 +60,8 @@ public class TestSuite {
     LOG.error("opened first link");
   }
 
-  @Test(description = "Search a new car Skoda")
-  public void searchNewSkodaTest(){
-    // searching a new car Skoda Octavia in Vinnitsya
-    RiaMainPage riaMain = openRiaMainPage();
-    riaMain.clickNewCarRadioButton()
-      .chooseTransport("Легковые")
-      .chooseBrand("Skoda")
-      .chooseModel("Octavia")
-      .chooseCity("Винница");
-    SearchCarResultPage skodaResults = riaMain.clickSearchCar();
-    skodaResults.chooseCarParameters();
-    Assert.assertTrue(skodaResults.getMessageNotFoundCar().contains("К сожалению мы не смогли найти предложений подходящих Вашему запросу"));
-  }
-
   @Test(enabled = false, description = "Login check")
-  public void loginTest(){
+  public void loginTest() {
     // navigation to login pages
     RiaMainPage riaMain = openRiaMainPage();
     Assert.assertFalse(riaMain.checkLoggedState());
@@ -88,8 +73,23 @@ public class TestSuite {
     Assert.assertTrue(riaMain.checkLoggedState());
   }
 
+  @Test(description = "Search a new car Skoda")
+  public void searchNewSkodaTest() {
+    // searching a new car Skoda Octavia in Vinnitsya
+    RiaMainPage riaMain = openRiaMainPage();
+    riaMain.clickNewCarRadioButton()
+        .chooseTransport("Легковые")
+        .chooseBrand("Skoda")
+        .chooseModel("Octavia")
+        .chooseCity("Винница");
+    SearchCarResultPage skodaResults = riaMain.clickSearchCar();
+    skodaResults.chooseCarParameters();
+    Assert.assertTrue(skodaResults.getMessageNotFoundCar()
+        .contains("К сожалению мы не смогли найти предложений подходящих Вашему запросу"), "Message");
+  }
+
   @Test(description = "Checking the breadcrumbs using top menu")
-  public void breadcrumbsTest(){
+  public void breadcrumbsTest() {
     RiaMainPage riaMain = openRiaMainPage();
 
     //nav to new car page and check breadcrumbs
@@ -102,7 +102,7 @@ public class TestSuite {
   }
 
   @Test(description = "Checking search form radio button state using top menu")
-  public void checkRelationsMenuSeachFormTest(){
+  public void checkRelationsMenuSeachFormTest() {
     RiaMainPage riaMain = openRiaMainPage();
 
     //nav to new car page and check state of radio button
@@ -115,14 +115,13 @@ public class TestSuite {
   }
 
   @Test(description = "Checking list of transport categories")
-  public void checkNumOfCarCategoryTest(){
+  public void checkNumOfCarCategoryTest() {
     RiaMainPage riaMain = openRiaMainPage();
-    riaMain.categoryCarSelect();
     Assert.assertEquals(riaMain.categoryCarSelect(), 10);
   }
 
-  @Test (description = "Unauthorized user is redirected to login page on Add Car action")
-  public void redirectLoginTest(){
+  @Test(description = "Unauthorized user is redirected to login page on Add Car action")
+  public void redirectLoginTest() {
     RiaMainPage riaMain = openRiaMainPage();
     Assert.assertFalse(riaMain.checkLoggedState());
     riaMain.clickSellCarButton();
