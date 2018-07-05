@@ -8,25 +8,38 @@
     <artifactId>autoria</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <!-- dependencies -->
+        <selenium-java.version>3.11.0</selenium-java.version>
+        <testng.version>6.14.3</testng.version>
+        <reportng.version>1.1.4</reportng.version>
+        <guice.version>3.0</guice.version>
+        <log4j-core.version>2.11.0</log4j-core.version>
+
+        <java.version>1.8</java.version>
+        <!-- plugins -->
+        <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
+    </properties>
+
     <dependencies>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.11.0</version>
+            <version>${selenium-java.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.14.3</version>
+            <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.uncommons</groupId>
             <artifactId>reportng</artifactId>
-            <version>1.1.4</version>
+            <version>${reportng.version}</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -38,15 +51,15 @@
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
-            <version>3.0</version>
+            <version>${guice.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.11.0</version>
+            <version>${log4j-core.version}</version>
         </dependency>
-
     </dependencies>
+
 
     <build>
         <plugins>
@@ -55,26 +68,20 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.7.0</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.0</version>
+                <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <properties>
-                        <property>
-                            <name>usedefaultlisteners</name>
-                            <value>false</value>
-                        </property>
-                        <property>
-                            <name>listener</name>
-                            <value>org.uncommons.reportng.HTMLReporter, org.uncommons.reportng.JUnitXMLReporter</value>
-                        </property>
+                        <usedefaultlisteners>false</usedefaultlisteners>
+                        <listener>org.uncommons.reportng.HTMLReporter, org.uncommons.reportng.JUnitXMLReporter</listener>
                     </properties>
                     <workingDirectory>target/</workingDirectory>
                 </configuration>
@@ -83,7 +90,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.22.0</version>
+                <version>${maven-surefire-plugin.version}</version>
             </plugin>
         </plugins>
     </build>
