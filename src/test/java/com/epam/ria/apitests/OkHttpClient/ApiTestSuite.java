@@ -1,4 +1,4 @@
-package com.epam.ria.apitests;
+package com.epam.ria.apitests.OkHttpClient;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
