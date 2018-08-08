@@ -3,6 +3,7 @@ package com.epam.ria.webtests.pages;
 import com.epam.ria.webtests.pages.elements.Header;
 import com.epam.ria.webtests.pages.elements.SearchForm;
 import org.openqa.selenium.*;
+
 import java.util.List;
 
 public class RiaMainPage extends APage {
@@ -16,62 +17,82 @@ public class RiaMainPage extends APage {
     header = new Header(driver);
   }
 
-// set parameters for a car in the searching form
+  // set parameters for a car in the searching form
   public RiaMainPage clickNewCarRadioButton() {
-  searchForm.clickNewCarRadioButton();
-  return this;
-}
+    searchForm.clickNewCarRadioButton();
+    return this;
+  }
+
   public RiaMainPage chooseTransport(String name) {
     selectDropDownOptionByTextId("categories", name);
     return this;
   }
+
   public RiaMainPage chooseBrand(String brand) {
     WebElement brandSearch = driver.findElement(By.id("brandTooltipBrandAutocompleteInput-brand"));
     brandSearch.sendKeys(brand);
-    WebElement brandElement = driver.findElement(By.xpath("//div[@id='brandTooltipBrandAutocomplete-brand']//a[contains(text(),\""+brand+"\")]"));
+    WebElement brandElement = driver.findElement(By.xpath("//div[@id='brandTooltipBrandAutocomplete-brand']//a[contains(text(),\"" + brand + "\")]"));
     brandElement.click();
     return this;
   }
+
   public RiaMainPage chooseModel(String model) {
     WebElement modelSearch = driver.findElement(By.id("brandTooltipBrandAutocompleteInput-model"));
     modelSearch.sendKeys(model);
-    WebElement modelElement = driver.findElement(By.xpath("//div[@id='brandTooltipBrandAutocomplete-model']//a[text()=\""+model+"\"]"));
+    WebElement modelElement = driver.findElement(By.xpath("//div[@id='brandTooltipBrandAutocomplete-model']//a[text()=\"" + model + "\"]"));
     modelElement.click();
     return this;
   }
+
   public RiaMainPage chooseCity(String city) {
     selectDropDownOptionByTextId("regionCenters", city);
     return this;
   }
+
   public SearchCarResultPage clickSearchCar() {
     driver.findElement(By.xpath("//*[@id='mainSearchForm']/div[3]/button")).click();
     return new SearchCarResultPage(driver);
   }
 
-//login
-  public void navigateToLoginPage(){
+  //login
+  public void navigateToLoginPage() {
     header.getLoginLink().click();
   }
-  public boolean checkLoggedState() {
+
+  public String getOwnCabinetText() {
+    WebElement ownCabinetLink;
     try {
-      WebElement ownCabinetLink = driver.findElement(By.cssSelector("#header div.item.user-menu span"));
-      return ownCabinetLink.getText().contains("Личный кабинет");
+      ownCabinetLink = driver.findElement(By.cssSelector("#header div.item.user-menu span"));
     } catch (NoSuchElementException e) {
-      System.out.println("Not Logged In");
+      ownCabinetLink = driver.findElement(By.xpath("//*[@id=\"header\"]/header[1]/div[1]/div/div/a[2]/span"));
     }
-    return false;
+    return ownCabinetLink.getText();
   }
 
-  public NewAutoPage navToNewCarPage(){
+  public boolean checkLoggedState() {
+    return getOwnCabinetText().contains("Личный кабинет");
+//    try {
+//      WebElement ownCabinetLink = driver.findElement(By.cssSelector("#header div.item.user-menu span"));
+//      return ownCabinetLink.getText().contains("Личный кабинет");
+//    } catch (NoSuchElementException e) {
+//      System.out.println("Not Logged In");
+//    }
+//    return false;
+  }
+
+  public NewAutoPage navToNewCarPage() {
     header.getNewCarMenuItem().click();
     return new NewAutoPage(driver);
   }
 
-  public int categoryCarSelect(){
+  public int categoryCarSelect() {
     List<WebElement> categoriesList = driver.findElements(By.cssSelector("#categories > option:nth-child(n)"));
     return categoriesList.size();
   }
-  public void clickSellCarButton(){
+
+  public void clickSellCarButton() {
     header.getSellCarButton().click();
   }
+
+
 }

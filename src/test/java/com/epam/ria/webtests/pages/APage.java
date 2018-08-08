@@ -8,11 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public abstract class APage {
   private static final Logger LOG = LogManager.getLogger(APage.class);
   protected WebDriver driver;
+  private String URL;
 
   public APage(WebDriver driver) {
     this.driver = driver;
@@ -37,4 +37,11 @@ public abstract class APage {
     element.sendKeys(text);
   }
 
+  public String getURL() {
+    return URL;
+  }
+
+//  public void navigateToHomePage() {
+//    Browser.get().get(Browser.getURL());
+//  }
 }
