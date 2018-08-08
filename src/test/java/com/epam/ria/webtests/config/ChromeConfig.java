@@ -26,7 +26,7 @@ public class ChromeConfig {
     }
   }
 
-  public static WebDriver config() {
+  public static WebDriver getDriver() {
     loadProperties();
     URL url = ChromeConfig.class.getClassLoader().getResource("chromedriver.exe");
 

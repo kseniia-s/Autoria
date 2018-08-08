@@ -26,7 +26,7 @@ public class TestSuite {
   @BeforeClass
   public void setup() {
     LOG.trace("Setup test classes;");
-    driver = ChromeConfig.config();
+    driver = ChromeConfig.getDriver();
     baseUrl = ChromeConfig.properties.getProperty("baseUrl");
     LOG.trace("Setup finished");
   }
