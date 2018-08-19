@@ -17,6 +17,12 @@ public class RiaMainPage extends APage {
     header = new Header(driver);
   }
 
+  public RiaMainPage open(String pageUrl) {
+    driver.manage().window().maximize();
+    driver.get(pageUrl);
+    return new RiaMainPage(driver);
+  }
+
   // set parameters for a car in the searching form
   public RiaMainPage clickNewCarRadioButton() {
     searchForm.clickNewCarRadioButton();

@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class NewAutoPage extends APage {
 
-  @FindBy(css = "div.breadcrumbs div:last-child")
+  @FindBy(css = "section.panel-breadcrumbs.mhide div:last-child")
   private WebElement breadcrumb;
   private SearchForm searchForm;
   private Header header;
