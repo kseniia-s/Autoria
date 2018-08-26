@@ -1,5 +1,7 @@
 package com.epam.ria.webtests.pages;
 
+import com.epam.ria.webtests.config.Browser;
+import com.epam.ria.webtests.config.ChromeConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -11,12 +13,8 @@ import java.util.List;
 
 public abstract class APage {
   private static final Logger LOG = LogManager.getLogger(APage.class);
-  protected WebDriver driver;
+  protected static WebDriver driver = Browser.getInstance();
   private String URL;
-
-  public APage(WebDriver driver) {
-    this.driver = driver;
-  }
 
   protected void selectDropDownOptionByTextId(String id, String text) {
     Select select = new Select(driver.findElement(By.id(id)));
@@ -41,7 +39,4 @@ public abstract class APage {
     return URL;
   }
 
-//  public void navigateToHomePage() {
-//    Browser.get().get(Browser.getURL());
-//  }
 }

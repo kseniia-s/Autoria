@@ -10,8 +10,7 @@ public class AddAutoPage extends APage {
   @FindBy(id = "login_frame")
   private WebElement loginIframe;
 
-  public AddAutoPage(WebDriver driver) {
-    super(driver);
+  public AddAutoPage() {
     PageFactory.initElements(driver, this);
   }
 

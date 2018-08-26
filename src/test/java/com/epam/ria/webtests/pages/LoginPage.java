@@ -6,10 +6,6 @@ import org.openqa.selenium.WebElement;
 
 public class LoginPage extends APage{
 
-  public LoginPage(WebDriver driver) {
-    super(driver);
-  }
-
   public void performLogin(String login, String password){
     driver.switchTo().frame("login_frame");
     //if we are in frame:

@@ -12,10 +12,9 @@ public class BuAutoPage extends APage {
   private WebElement breadcrumb;
   private SearchForm searchForm;
 
-  public BuAutoPage(WebDriver driver) {
-    super(driver);
+  public BuAutoPage() {
     PageFactory.initElements(driver, this);
-    searchForm = new SearchForm(driver);
+    searchForm = new SearchForm();
   }
 
   public String getLastBreadcrumb() {

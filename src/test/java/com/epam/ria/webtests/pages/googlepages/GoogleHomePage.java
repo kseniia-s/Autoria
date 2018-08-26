@@ -12,8 +12,7 @@ public class GoogleHomePage extends APage {
     @FindBy(name = "q")
     private WebElement searchField;
 
-    public GoogleHomePage(WebDriver driver) {
-        super(driver);
+    public GoogleHomePage() {
         PageFactory.initElements(driver, this);
     }
 

@@ -11,16 +11,15 @@ public class RiaMainPage extends APage {
   private SearchForm searchForm;
   private Header header;
 
-  public RiaMainPage(WebDriver driver) {
-    super(driver);
-    searchForm = new SearchForm(driver);
-    header = new Header(driver);
+  public RiaMainPage() {
+    searchForm = new SearchForm();
+    header = new Header();
   }
 
   public RiaMainPage open(String pageUrl) {
     driver.manage().window().maximize();
     driver.get(pageUrl);
-    return new RiaMainPage(driver);
+    return new RiaMainPage();
   }
 
   // set parameters for a car in the searching form

@@ -15,8 +15,7 @@ public class SearchForm extends APage {
   @FindBy(xpath = "//label[@for='naRadioType']")
   WebElement newCarRadioButLabel;
 
-  public SearchForm (WebDriver driver) {
-    super(driver);
+  public SearchForm () {
     PageFactory.initElements(driver, this);
   }
 

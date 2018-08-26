@@ -14,8 +14,7 @@ public class GoogleResultsPage extends APage {
   @FindBy(xpath = "//h3[@class='r']/a")
   private WebElement searchResultLink;
 
-  public GoogleResultsPage(WebDriver driver) {
-    super(driver);
+  public GoogleResultsPage() {
     PageFactory.initElements(driver, this);
   }
 

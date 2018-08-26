@@ -20,8 +20,7 @@ public class Header extends APage {
   @FindBy(xpath = "//a[contains (@href, '/add_auto.html') and contains (@class, 'button-add')]")
   private WebElement sellCarButton;
 
-  public Header (WebDriver driver){
-    super(driver);
+  public Header (){
     PageFactory.initElements(driver, this);
   }
 

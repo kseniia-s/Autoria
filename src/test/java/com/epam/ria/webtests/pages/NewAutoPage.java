@@ -14,11 +14,10 @@ public class NewAutoPage extends APage {
   private SearchForm searchForm;
   private Header header;
 
-  public NewAutoPage(WebDriver driver) {
-    super(driver);
+  public NewAutoPage() {
     PageFactory.initElements(driver, this);
-    searchForm = new SearchForm(driver);
-    header = new Header(driver);
+    searchForm = new SearchForm();
+    header = new Header();
   }
 
   public String getLastBreadcrumb() {
@@ -27,7 +26,7 @@ public class NewAutoPage extends APage {
 
   public BuAutoPage navToBuCarPage() {
     header.getBuCarMenuItem().click();
-    return new BuAutoPage(driver);
+    return new BuAutoPage();
   }
 
   public SearchForm getSearchForm() {

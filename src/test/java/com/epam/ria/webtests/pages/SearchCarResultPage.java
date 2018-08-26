@@ -11,8 +11,7 @@ public class SearchCarResultPage extends APage {
   @FindBy(xpath = "//*[@id='searchResult']//h2[@class='message size16']")
   private WebElement messageNotFoundCar;
 
-  public SearchCarResultPage(WebDriver driver) {
-    super(driver);
+  public SearchCarResultPage() {
     PageFactory.initElements(driver, this);
   }
 

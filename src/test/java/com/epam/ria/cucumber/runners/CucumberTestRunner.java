@@ -6,11 +6,11 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-
-@CucumberOptions(features = "src/test/resources/features", plugin = {"json:target/cucumber.json", "html:target/site/cucumber-pretty"},
+@CucumberOptions(
+    features = "classpath:features",
+    plugin = {"pretty", "json:cucumber.json"},//, "html:target/site/cucumber-pretty"
     glue = "com.epam.ria.cucumber.glue")
 public class CucumberTestRunner extends AbstractTestNGCucumberTests {
-
   @BeforeClass
   public void setUp() {
     Browser.getInstance();
@@ -20,5 +20,4 @@ public class CucumberTestRunner extends AbstractTestNGCucumberTests {
   public void cleanup() {
     Browser.closeBrowser();
   }
-
 }
