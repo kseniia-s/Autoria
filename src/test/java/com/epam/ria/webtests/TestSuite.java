@@ -34,13 +34,13 @@ public class TestSuite {
   protected RiaMainPage openRiaMainPage() {
     driver.manage().window().maximize();
     driver.get(baseUrl);
-    return new RiaMainPage(driver);
+    return new RiaMainPage();
   }
 
   protected GoogleHomePage openGoogleHomePage() {
     driver.manage().window().maximize();
     driver.get("https://google.com.ua");
-    return new GoogleHomePage(driver);
+    return new GoogleHomePage();
   }
 
   @AfterClass
@@ -54,7 +54,7 @@ public class TestSuite {
     LOG.debug("opened google page");
     googleHomePage.fillSearchRequest("autoria");
     LOG.warn("opened google result page");
-    GoogleResultsPage googleResult = new GoogleResultsPage(driver);
+    GoogleResultsPage googleResult = new GoogleResultsPage();
     Assert.assertTrue(googleResult.isTextPresent("https://auto.ria.com"));
     googleResult.clickFirstLinkResults();
     LOG.error("opened first link");
@@ -68,7 +68,7 @@ public class TestSuite {
     riaMain.navigateToLoginPage();
 
     //login
-    LoginPage loginPage = new LoginPage(driver);
+    LoginPage loginPage = new LoginPage();
     loginPage.performLogin("+380630624774", "arygazupy");
     Assert.assertTrue(riaMain.checkLoggedState());
   }
@@ -125,7 +125,7 @@ public class TestSuite {
     RiaMainPage riaMain = openRiaMainPage();
     Assert.assertFalse(riaMain.checkLoggedState());
     riaMain.clickSellCarButton();
-    AddAutoPage addAutoPage = new AddAutoPage(driver);
+    AddAutoPage addAutoPage = new AddAutoPage();
     Assert.assertTrue(addAutoPage.getLoginIframe().isDisplayed());
   }
 }

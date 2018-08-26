@@ -9,8 +9,8 @@ import org.openqa.selenium.WebDriver;
 public class DataStorage {
   public static final String BASE_URL = "https://auto.ria.com/";   //ChromeConfig.properties.getProperty("baseUrl");
   protected static WebDriver driver = Browser.getInstance();
-  public static RiaMainPage riaMainPage = new RiaMainPage(driver);
+  public static RiaMainPage riaMainPage = new RiaMainPage();
 
-  public static NewAutoPage newAutoPage = new NewAutoPage(driver);
-  public static BuAutoPage buAutoPage = new BuAutoPage(driver);
+  public static NewAutoPage newAutoPage = new NewAutoPage();
+  public static BuAutoPage buAutoPage = new BuAutoPage();
 }

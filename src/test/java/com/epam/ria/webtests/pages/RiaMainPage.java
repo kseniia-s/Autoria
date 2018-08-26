@@ -56,7 +56,7 @@ public class RiaMainPage extends APage {
 
   public SearchCarResultPage clickSearchCar() {
     driver.findElement(By.xpath("//*[@id='mainSearchForm']/div[3]/button")).click();
-    return new SearchCarResultPage(driver);
+    return new SearchCarResultPage();
   }
 
   //login
@@ -87,7 +87,7 @@ public class RiaMainPage extends APage {
 
   public NewAutoPage navToNewCarPage() {
     header.getNewCarMenuItem().click();
-    return new NewAutoPage(driver);
+    return new NewAutoPage();
   }
 
   public int categoryCarSelect() {

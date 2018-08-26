@@ -29,7 +29,7 @@ public class RedirectToLoginStepsDefs {
 
   @Then("^Auto Page displays a Login Form$")
   public void autoPageDisplaysALoginForm(){
-    AddAutoPage addAutoPage = new AddAutoPage(driver);
+    AddAutoPage addAutoPage = new AddAutoPage();
     Assert.assertTrue(addAutoPage.getLoginIframe().isDisplayed());
   }
 
