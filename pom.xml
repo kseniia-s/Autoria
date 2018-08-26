@@ -15,7 +15,7 @@
         <reportng.version>1.1.4</reportng.version>
         <guice.version>3.0</guice.version>
         <log4j-core.version>2.11.0</log4j-core.version>
-
+        <cucumber.java.version>2.4.0</cucumber.java.version>
         <java.version>1.8</java.version>
         <!-- plugins -->
         <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
@@ -71,32 +71,24 @@
             <artifactId>log4j-core</artifactId>
             <version>${log4j-core.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-remote-driver</artifactId>
-            <version>3.12.0</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.seleniumhq.selenium</groupId>-->
+            <!--<artifactId>selenium-remote-driver</artifactId>-->
+            <!--<version>3.12.0</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
 
-        <!-- glue -->
+        <!-- cucumber -->
         <dependency>
-            <groupId>io.glue</groupId>
-            <artifactId>glue-java8</artifactId>
-            <version>3.0.2</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-testng</artifactId>
-            <version>RELEASE</version><!-- 1.2.5 -->
-        </dependency>
-
-        <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>RELEASE</version><!-- 1.2.5 -->
-            <scope>test</scope>
+            <version>${cucumber.java.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.java.version}</version>
         </dependency>
 
         <!-- BROWSER drivers automatic installing -->
@@ -106,11 +98,11 @@
             <version>1.6.2</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.basepom.maven</groupId>
-            <artifactId>duplicate-finder-maven-plugin</artifactId>
-            <version>1.3.0</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.basepom.maven</groupId>-->
+            <!--<artifactId>duplicate-finder-maven-plugin</artifactId>-->
+            <!--<version>1.3.0</version>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
@@ -130,11 +122,18 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
+                    <!--<suiteXmlFiles>-->
+                        <!--<suiteXmlFile>src/test/testng.xml</suiteXmlFile>-->
+                    <!--</suiteXmlFiles>-->
+                    <includes>
+                        <include>**/CucumberTestRunner.class</include>
+                    </includes>
+
                     <testFailureIgnore>true</testFailureIgnore>
-                    <properties>
-                        <usedefaultlisteners>false</usedefaultlisteners>
-                        <listener>org.uncommons.reportng.HTMLReporter, org.uncommons.reportng.JUnitXMLReporter</listener>
-                    </properties>
+                    <!--<properties>-->
+                        <!--<usedefaultlisteners>false</usedefaultlisteners>-->
+                        <!--<listener>org.uncommons.reportng.HTMLReporter, org.uncommons.reportng.JUnitXMLReporter</listener>-->
+                    <!--</properties>-->
                     <workingDirectory>target/</workingDirectory>
                 </configuration>
             </plugin>
@@ -143,6 +142,26 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>2.8.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>Autoria</projectName>
+                            <outputDirectory>${project.build.directory}/cucumber-report-html</outputDirectory>
+                            <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
